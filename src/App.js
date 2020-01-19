@@ -3,7 +3,8 @@ import './App.css';
 import { Provider } from 'react-redux';
 import { createStore } from 'redux';
 import rootReducer from './redux/rootReducer';
-import NumberDisplay from './components/numberDisplay';
+import ReduxButton from './components/reduxButton';
+import NormalButton from './components/normalButton';
 
 const myStore = createStore(rootReducer);
 
@@ -12,8 +13,8 @@ function App() {
     <Provider store={myStore}>
       <div className="App">
         <header className="App-header">
-          <p>Click the button below to add one!</p>
-          <NumberDisplay />
+          <ReduxButton />
+          <NormalButton />
         </header>
       </div>
     </Provider>
