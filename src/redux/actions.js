@@ -10,9 +10,10 @@ export const resetCount = () => {
   };
 };
 
-export const toggleColor = () => {
+export const toggleColor = color => {
   return {
-    type: 'TOGGLE_COLOR'
+    type: 'TOGGLE_COLOR',
+    payload: color
   };
 };
 

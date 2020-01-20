@@ -14,13 +14,26 @@ class ReduxButton extends Component {
   // add helper method to call several action creators when clicked
   onMainButtonPressed() {
     this.props.incrementCount();
-    this.props.toggleColor();
+    // call change color method which does some logic for us
+    this.changeColor(this.props.color);
   }
 
   // add helper method to call several action creators when clicked
   resetButtonnPressed() {
     this.props.resetCount();
     this.props.resetColor();
+  }
+
+  // add helper method to determine what color to pass to reducers
+  changeColor(color) {
+    // check the color that is passed in (current value of this.props.color)
+    if (color === 'lightsalmon') {
+      this.props.toggleColor('lightgreen');
+    } else if (color === 'lightgreen') {
+      this.props.toggleColor('lightyellow');
+    } else {
+      this.props.toggleColor('lightsalmon');
+    }
   }
 
   // render the button with whatever color is provided to it via our data stores
