@@ -1,11 +1,47 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
-import { incrementCount, resetCount } from '../redux/actions';
+import {
+  incrementCount,
+  resetCount,
+  toggleColor,
+  resetColor
+} from '../redux/actions';
 import '../App.css';
 
 // make the class itself
 class ReduxButton extends Component {
+  // add helper method to call several action creators when clicked
+  onMainButtonPressed() {
+    this.props.incrementCount();
+    this.props.toggleColor();
+  }
+
+  // add helper method to call several action creators when clicked
+  resetButtonnPressed() {
+    this.props.resetCount();
+    this.props.resetColor();
+  }
+
+  // render the button with whatever color is provided to it via our data stores
+  renderButton() {
+    return (
+      <button
+        // apply inline styling so we can adjust the color on-the-fly
+        style={{
+          // background color of the button is whatever the color prop from our store is. If there isn't one, use lightcoral
+          backgroundColor: this.props.color || 'lightcoral',
+          borderRadius: 5,
+          width: 150,
+          height: 50,
+          border: 0
+        }}
+        // add an onClick handler which calls a function inside of this file
+        onClick={() => this.onMainButtonPressed()}
+      />
+    );
+  }
+
   render() {
     // make a clickable div that calls "increment" when clicked, this will update our application state
     // inside of the div, show some text for whatever "number" is equal to in our application state
@@ -16,13 +52,10 @@ class ReduxButton extends Component {
           <br />
           Count: {this.props.number}
         </div>
-        <button
-          className="Red-Button"
-          onClick={() => this.props.incrementCount()}
-        />
+        {this.renderButton()}
         <button
           className="Reset-Button"
-          onClick={() => this.props.resetCount()}
+          onClick={() => this.resetButtonnPressed()}
         >
           Reset
         </button>
@@ -34,8 +67,9 @@ class ReduxButton extends Component {
 // declare mapStateToProps to turn our application level state in our Redux store into props available to this component
 const mapStateToProps = state => {
   return {
-    // set the key to number and have it set to whatever the state value's number property
-    number: state.number
+    // set any keys for components to use here. For their values, make sure to set it as "state." followed by whatever the key is for the data in rootReudcer, as that is where your application state is stored.
+    number: state.number,
+    color: state.color
   };
 };
 
@@ -44,7 +78,10 @@ const mapDispatchToProps = dispatch => {
   // have it return bindActionCreators with arguments
   // as the first arg pass in an object with any actions we want to use, seperated by commas
   // as the second arg pass in dispatch
-  return bindActionCreators({ incrementCount, resetCount }, dispatch);
+  return bindActionCreators(
+    { incrementCount, resetCount, toggleColor, resetColor },
+    dispatch
+  );
 };
 
 // export the component using connect so it is aware of the application state

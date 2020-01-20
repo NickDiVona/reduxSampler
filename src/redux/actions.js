@@ -9,3 +9,15 @@ export const resetCount = () => {
     type: 'RESET_COUNT'
   };
 };
+
+export const toggleColor = () => {
+  return {
+    type: 'TOGGLE_COLOR'
+  };
+};
+
+export const resetColor = () => {
+  return {
+    type: 'RESET_COLOR'
+  };
+};
