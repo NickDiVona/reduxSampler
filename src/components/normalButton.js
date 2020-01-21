@@ -33,6 +33,8 @@ class NormalButton extends Component {
   }
 
   normalButtonPressed(color) {
+    this.incrementNormalButtonCount();
+
     switch (color) {
       case 'lightsteelblue':
         return this.changeNormalButtonColor('lightseagreen');
