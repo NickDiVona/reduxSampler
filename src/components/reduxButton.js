@@ -43,7 +43,7 @@ class ReduxButton extends Component {
         // apply inline styling so we can adjust the color on-the-fly
         style={{
           // background color of the button is whatever the color prop from our store is. If there isn't one, use lightcoral
-          backgroundColor: this.props.color || 'lightcoral',
+          backgroundColor: this.props.color,
           borderRadius: 5,
           width: 150,
           height: 50,
