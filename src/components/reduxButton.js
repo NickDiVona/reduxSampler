@@ -12,14 +12,14 @@ import '../App.css';
 // make the class itself
 class ReduxButton extends Component {
   // add helper method to call several action creators when clicked
-  onMainButtonPressed() {
+  onReduxButtonPressed() {
     this.props.incrementCount();
     // call change color method which does some logic for us
     this.changeColor(this.props.color);
   }
 
   // add helper method to call several action creators when clicked
-  resetButtonnPressed() {
+  resetButtonPressed() {
     this.props.resetCount();
     this.props.resetColor();
   }
@@ -50,7 +50,7 @@ class ReduxButton extends Component {
           border: 0
         }}
         // add an onClick handler which calls a function inside of this file
-        onClick={() => this.onMainButtonPressed()}
+        onClick={() => this.onReduxButtonPressed()}
       />
     );
   }
@@ -68,7 +68,7 @@ class ReduxButton extends Component {
         {this.renderButton()}
         <button
           className="Reset-Button"
-          onClick={() => this.resetButtonnPressed()}
+          onClick={() => this.resetButtonPressed()}
         >
           Reset
         </button>
