@@ -5,7 +5,8 @@ class NormalButton extends Component {
     super(props);
 
     this.state = {
-      normalButtonCount: 0
+      normalButtonCount: 0,
+      normalButtonColor: 'lightsteelblue'
     };
   }
 
@@ -15,10 +16,36 @@ class NormalButton extends Component {
     });
   }
 
+  changeNormalButtonColor(color) {
+    this.setState({
+      normalButtonColor: color
+    });
+  }
+
   resetNormalButtonCount() {
     this.setState({
       normalButtonCount: 0
     });
+
+    this.setState({
+      normalButtonColor: 'lightsteelblue'
+    });
+  }
+
+  normalButtonPressed(color) {
+    switch (color) {
+      case 'lightsteelblue':
+        return this.changeNormalButtonColor('lightseagreen');
+
+      case 'lightseagreen':
+        return this.changeNormalButtonColor('lightcoral');
+
+      case 'lightcoral':
+        return this.changeNormalButtonColor('lightgrey');
+
+      default:
+        return this.changeNormalButtonColor('lightsteelblue');
+    }
   }
 
   render() {
@@ -30,8 +57,14 @@ class NormalButton extends Component {
           Count: {this.state.normalButtonCount}
         </div>
         <button
-          className="Blue-Button"
-          onClick={() => this.incrementNormalButtonCount()}
+          style={{
+            backgroundColor: this.state.normalButtonColor,
+            borderRadius: 5,
+            width: 150,
+            height: 50,
+            border: 0
+          }}
+          onClick={() => this.normalButtonPressed(this.state.normalButtonColor)}
         />
         <button
           className="Reset-Button"
